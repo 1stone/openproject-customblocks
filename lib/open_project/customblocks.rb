@@ -1,5 +1,5 @@
 module OpenProject
-  module TWINSEC
+  module CUSTOMBLOCKS
     require "open_project/customblocks/engine"
   end
 end

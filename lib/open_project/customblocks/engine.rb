@@ -4,7 +4,7 @@ require 'open_project/plugins'
 
 module OpenProject::CUSTOMBLOCKS
   class Engine < ::Rails::Engine
-    engine_name :openproject_twinsec
+    engine_name :openproject_customblocks
 
     include OpenProject::Plugins::ActsAsOpEngine
 
