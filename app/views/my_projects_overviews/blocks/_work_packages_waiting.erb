@@ -11,7 +11,7 @@
 		  where project_id = #{@project.id}
           and (start_date is null or start_date<Date(Now()))
           and done_ratio<100
-          and type_id not in (#{Type.where("name in ('Phase','User Story','Milestone')").collect{|m| m.id}.join(',')})
+          and type_id in (#{Type.where("name in ('Task','Bug')").collect{|m| m.id}.join(',')})
           and id not in 
 	         (select to_id 
       		    from openproject_ce.work_packages _wp, openproject_ce.relations _r
