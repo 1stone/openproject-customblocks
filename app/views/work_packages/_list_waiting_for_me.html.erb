@@ -1,0 +1,35 @@
+<% if work_packages && work_packages.any? %>
+<%= form_tag({}) do %>
+  <table class="list issues work_packages">
+    <thead><tr>
+    <th>#</th>
+    <th><%= WorkPackage.human_attribute_name(:fixed_version)%></th>
+    <th><%= WorkPackage.human_attribute_name(:type)%></th>
+    <th><%= WorkPackage.human_attribute_name(:subject)%></th>
+    <th><%= WorkPackage.human_attribute_name(:status)%></th>
+    <th><%= WorkPackage.human_attribute_name(:start_date)%></th>
+    <th><%= WorkPackage.human_attribute_name(:done_ratio)%></th>
+    </tr></thead>
+    <tbody>
+    <% for work_package in work_packages %>
+    <tr id="work_package-<%= h(work_package.id) %>" class="hascontextmenu <%= cycle('odd', 'even') %> <%= work_package_css_classes(work_package) %>">
+      <td class="id">
+        <%= check_box_tag("ids[]", work_package.id, false, :style => 'display:none;') %>
+        <%= link_to_work_package(work_package, :id_only => true) %>
+      </td>
+      <td class="version"><%=h work_package.fixed_version %></td>
+      <td class="type"><%=h work_package.type %></td>
+      <td class="subject">
+        <%= link_to_work_package(work_package, :subject_only => true) %>
+      </td>
+      <td class="status"><%=h work_package.status %></td>
+      <td class="start_date"><%=h work_package.start_date %></td>
+      <td class="done_ratio"><%=h work_package.done_ratio %></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

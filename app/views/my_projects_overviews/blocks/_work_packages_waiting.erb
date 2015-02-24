@@ -1,0 +1,26 @@
+
+<h3><%=l(:label_work_packages_waiting)%></h3>
+
+<% if defined? block_name_id %>
+  <%= content_for block_name_id %>
+<% end %>
+
+<% waiting_work_packages =
+	WorkPackage.visible.open.find_by_sql(
+		"select * from #{WorkPackage.table_name} 
+		  where project_id = #{@project.id}
+          and (start_date is null or start_date<Date(Now()))
+          and done_ratio<100
+          and type_id not in (#{Type.where("name in ('Phase','User Story','Milestone')").collect{|m| m.id}.join(',')})
+          and id not in 
+	         (select to_id 
+      		    from openproject_ce.work_packages _wp, openproject_ce.relations _r
+                where relation_type='precedes'
+                and from_id=_wp.id
+                and done_ratio<100)"
+	)%>
+
+<%= render :partial => 'work_packages/list_waiting', 
+           :locals => { :work_packages => waiting_work_packages } %>
+
+
