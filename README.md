@@ -30,7 +30,7 @@ For "My Page":
 
 		gem "openproject-customblocks", :path => 'plugins/openproject-customblocks'
 
-1. Rebundle your gems:
+1. Reinstall the gem bundles:
 
 		$> openproject-ce run bundle install --no-deployment
 
