@@ -43,4 +43,5 @@ For "My Page":
 
 ## Issue Tracker
 
-no issues yet... ;)
+- Currenty only workpackages of type *Task* are evaluated and shown in the list.
+  And since I haven't figured yet how to implement a suitable plugin configure page, this is currently hard-coded (yuk!).
